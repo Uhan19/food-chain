@@ -1,0 +1,8 @@
+.animal-display-container {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid;
+    border-color: black;
+    margin-right: 20px;
+    padding: 10px;
+}
