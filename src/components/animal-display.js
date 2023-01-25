@@ -1,13 +1,12 @@
 import "./animal-display.css";
 
-export const AnimalDisplay = ({animal}) => {
-    const { name, caloriesIn, caloriesOut } = animal
-    console.log("caloriesIn", caloriesIn)
+export const AnimalDisplay = ({animal, s}) => {
+    const { name, input, output } = animal
     return (
         <div className="animal-display-container">
-            <div>Calories out: {caloriesOut}</div>
+            <div>Calories out: {input}</div>
             <div>{name}</div>
-            <div>Calories in: {caloriesIn}</div>
+            <div>Calories in: {output}</div>
         </div>
     )
 }

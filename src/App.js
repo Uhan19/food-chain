@@ -1,48 +1,68 @@
 
-import { useState } from "react";
 import './App.css';
+import { useState } from "react";
 import { AnimalInput } from './components/animal-input';
 import { AnimalFactory } from "./components/animal-factory";
+import AppContext from "./app-context";
 
 const App = () => {
+
   const [ apex, setApex ] = useState([{
-    name: "tiger",
-    caloriesIn: 0,
-    caloriesOut: 0,
+    "name": "tiger",
+    "input": 2000,
+    "output": 0,
   }])
 
   const [ predator, setPredator ] = useState([{
-    name: "fox",
-    caloriesIn: 0,
-    caloriesOut: 0,
-  }])
-  
-  const [ herbivore, setHerbivore ] = useState([{
-    name: "mouse",
-    caloriesIn: 0,
-    caloriesOut: 0,
+      "name": "fox",
+      "input": 2800,
+      "output": 2600,
   }, {
-    name: "mouse",
-    caloriesIn: 0,
-    caloriesOut: 0,
+      "name": "snake",
+      "input": 1500,
+      "output": 1300,
   }])
 
+  const [ herbivore, setHerbivore ] = useState([{
+      "name": "mouse",
+      "input": 3100,
+      "output": 3000,
+    }, {
+      "name": "squirrel",
+      "input": 2000,
+      "output": 1500,
+    }])
+
   const [ producer, setProducer ] = useState([{
-    name: "grass",
-    caloriesIn: 0,
-    caloriesOut: 0,
+    "name": "grass",
+    "input": 0,
+    "output": 1000,
+  }, {
+    "name": "mushroom",
+    "input": 0,
+    "output": 2500,
+  }, {
+    "name": "berries",
+    "in": 0,
+    "out": 3000,
   }])
 
   return (
-    <div className="App">
-      <AnimalInput />
-      <div className="animals-container">
-        <AnimalFactory animals={apex}/>
-        <AnimalFactory animals={predator}/>
-        <AnimalFactory animals={herbivore}/>
-        <AnimalFactory animals={producer}/>
+    <AppContext.Provider value={{
+      apex,
+      predator, 
+      herbivore, 
+      producer, 
+      setApex,
+      setPredator,
+      setHerbivore,
+      setProducer
+    }}>
+      <div className="App">
+        <AnimalInput />
+        <AnimalFactory />
       </div>
-    </div>
+    </AppContext.Provider>
   );
 }
 
