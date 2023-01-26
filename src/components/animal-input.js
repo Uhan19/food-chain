@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import "./animal-input.css";
+import "./css/animal-input.css";
 import AppContext from "../app-context";
 
 export const AnimalInput = () => {
@@ -31,14 +31,16 @@ export const AnimalInput = () => {
         inputData[animal][attribute] = value;
     }
 
-    const onSubmit = (e) => {
-        const animal = e.target.parentNode.className;
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        const animal = e.target.className
+        console.log(inputData)
         switch(animal)  {
             case "apex": 
                 setApex([
                     ...apex,
                     inputData.apex
-                ])
+                ]);
             break;
             case "predator": 
                 setPredator([
@@ -61,39 +63,39 @@ export const AnimalInput = () => {
             default:
             break;
         }
-
+        e.target.reset();
     }
 
     return (
         <div className="container">
-            <span className="name">Apex Animal</span>
-            <div className="apex">
+            <span className="name">Apex</span>
+            <form className="apex" onSubmit={handleSubmit}>
                 <input className= "input" name="apex-name" onChange={onChange} placeholder="name"/>
                 <input className= "input" name="apex-input" onChange={onChange} placeholder="calories input"/>
                 <input className= "input" name="apex-output" onChange={onChange} placeholder="calories output"/>
-                <button name="submit" onClick={onSubmit}>Submit</button>
-            </div>
+                <button type="submit">Submit</button>
+            </form>
             <span className="name">Predator</span>
-            <div className="predator">
+            <form className="predator" onSubmit={handleSubmit}>
                 <input className= "input" name="predator-name" onChange={onChange} placeholder="name"/>
                 <input className= "input" name="predator-input" onChange={onChange} placeholder="calories input"/>
                 <input className= "input" name="predator-output" onChange={onChange} placeholder="calories output"/>
-                <button name="submit" onClick={onSubmit}>Submit</button>
-            </div>
+                <button type="submit">Submit</button>
+            </form>
             <span className="name">Herbivore</span>
-            <div className="herbivore">
+            <form className="herbivore" onSubmit={handleSubmit}>
                 <input className= "input" name="herbivore-name" onChange={onChange} placeholder="name"/>
                 <input className= "input" name="herbivore-input" onChange={onChange} placeholder="calories input"/>
                 <input className= "input" name="herbivore-output" onChange={onChange} placeholder="calories output"/>
-                <button name="submit" onClick={onSubmit}>Submit</button>
-            </div>
+                <button type="submit">Submit</button>
+            </form>
             <span className="name">Producer</span>
-            <div className="producer">
+            <form className="producer" onSubmit={handleSubmit}>
                 <input className= "input" name="producer-name" onChange={onChange} placeholder="name"/>
                 <input className= "input" name="producer-input" onChange={onChange} placeholder="calories input"/>
                 <input className= "input" name="producer-output" onChange={onChange} placeholder="calories output"/>
-                <button name="submit" onClick={onSubmit}>Submit</button>
-            </div>
+                <button type="submit">Submit</button>
+            </form>
         </div>
     )
 }

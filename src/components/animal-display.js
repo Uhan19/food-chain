@@ -1,12 +1,13 @@
-import "./animal-display.css";
+import "./css/animal-display.css";
 
-export const AnimalDisplay = ({animal, s}) => {
+export const AnimalDisplay = ({animal, species, index, handleDelete}) => {
     const { name, input, output } = animal
     return (
-        <div className="animal-display-container">
-            <div>Calories out: {input}</div>
+        <div className="animal-display-container" id={`${species}${index}`}>
+            <div>Calories out: {output}</div>
             <div>{name}</div>
-            <div>Calories in: {output}</div>
+            <div>Calories in: {input}</div>
+            <button onClick={handleDelete} className="delete-animal-button">Delete</button>
         </div>
     )
 }
